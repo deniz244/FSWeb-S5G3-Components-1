@@ -160,3 +160,5 @@ function haberYapici(haberlerData) {
   return dynamicHaberNodeList;
 }
 haberYapici(data);
+
+//bitti
