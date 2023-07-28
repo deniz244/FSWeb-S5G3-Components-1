@@ -41,7 +41,8 @@ function menuYapici(menuElemanlariDizisi) {
 
   menuDiv.classList.add("menu");
 
-  menuDiv.classList.add("menu--open");
+  //test etmek için alttaki satırı açın
+  //menuDiv.classList.add("menu--open");
 
   const menuListesi = document.createElement("ul");
 
