@@ -1,3 +1,4 @@
+import { refresh } from "less";
 import "./Menu.less";
 
 // Kullanacağımız veri bu, üzerinde çalışın ama henüz hiçbir şeyi değiştirmeyin.
@@ -35,26 +36,35 @@ Adım 5: Oluştrulan div.menu 'yü döndürmeyi unutmayın.
 Adım 6: 'menuYapici' fonksiyonunu ve 'menuElemanlari' dizisini kullanarak menüyü oluşturun, ve döndürülen menüyü header'e ekleyin.
 */
 
-function menuYapici(arr) {
-  const menu = document.createElement("div");
-  menu.classList.add("menu");
+function menuYapici(menuElemanlariDizisi) {
+  const menuDiv = document.createElement("div");
 
-  const ul = document.createElement("ul");
+  menuDiv.classList.add("menu");
 
-  const list = document.createElement("li");
+  menuDiv.classList.add("menu--open");
 
-  arr.map(list);
+  const menuListesi = document.createElement("ul");
 
-  const button = document.getElementsByClassName("menu-button");
-  button.addEventListener("click", (e) => {
-    console.log("clicked!");
+  menuElemanlariDizisi.forEach((baslik) => {
+    const menuListeElemani = document.createElement("li");
+    menuListeElemani.textContent = baslik;
+    menuListesi.appendChild(menuListeElemani);
   });
 
-  menu.appendChild(ul);
-  menu.appendChild(list);
-  return menu;
+  menuDiv.appendChild(menuListesi);
+
+  return menuDiv;
 }
 
-document
-  .getElementsByClassName("header")
-  .appendChild(menuYapici(menuElemanlari));
+const dynamicMenu = menuYapici(menuElemanlari);
+const headerDiv = document.querySelector(".header");
+headerDiv.appendChild(dynamicMenu);
+
+console.log("menuElemanlari", menuElemanlari);
+
+// menu çizgi açma kapama
+const menuButton = document.querySelector(".menu-button");
+
+menuButton.addEventListener("click", () => {
+  dynamicMenu.classList.toggle("menu--open");
+});
